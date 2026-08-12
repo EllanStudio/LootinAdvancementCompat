@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.ellanserver'
+version = '1.0.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://repo.papermc.io/repository/maven-public/' }
+}
+
+sourceSets {
+    lootinApi {
+        java.srcDir 'src/lootinApi/java'
+    }
+    main {
+        compileClasspath += lootinApi.output
+    }
+}
+
+configurations {
+    lootinApiCompileOnly.extendsFrom compileOnly
+}
+
+dependencies {
+    compileOnly 'io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT'
+    lootinApiCompileOnly 'io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT'
+    testImplementation platform('org.junit:junit-bom:5.14.3')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('compileJava') {
+    dependsOn tasks.named('compileLootinApiJava')
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}
+
+tasks.named('jar') {
+    archiveBaseName = 'EllanLootinAdvancementCompat'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
