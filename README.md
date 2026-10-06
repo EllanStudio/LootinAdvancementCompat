@@ -25,8 +25,8 @@ inventories and performs a PDC read plus a constant-size map lookup.
 
 ## Requirements
 
-- Java 21 or newer
-- Paper-compatible server with the modern advancement API
+- Java 25 or newer
+- Paper 26.3-compatible server (compile target `26.3.build.157-beta`) with the modern advancement API
 - Lootin or Lootin Remastered exposing `LootinInventoryOpenEvent`
 
 ## Build
