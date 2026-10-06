@@ -1,7 +1,7 @@
 name: EllanLootinAdvancementCompat
 version: 1.0.0
 main: com.ellanserver.lootinadvancementcompat.LootinAdvancementCompatPlugin
-api-version: '1.21'
+api-version: '26.3'
 author: EllanServer
 description: Restores vanilla container-loot advancements for Lootin-managed containers.
 depend: [Lootin]
